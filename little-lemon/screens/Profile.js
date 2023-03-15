@@ -171,12 +171,7 @@ const Profile = () => {
           onChangeText={(newValue) => updateProfile("lastName", newValue)}
           placeholder={"Last Name"}
         />
-        <Text
-          style={[
-            styles.text,
-            validateEmail(profile.email) ? "" : styles.error,
-          ]}
-        >
+        <Text style={[styles.text, profile.email ? "" : styles.error]}>
           Email
         </Text>
         <TextInput
@@ -287,12 +282,10 @@ const styles = StyleSheet.create({
   headertext: {
     fontSize: 22,
     paddingBottom: 10,
-    fontFamily: "Karla-ExtraBold",
   },
   text: {
     fontSize: 16,
     marginBottom: 5,
-    fontFamily: "Karla-Medium",
   },
   inputBox: {
     alignSelf: "stretch",
@@ -335,7 +328,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#FFFFFF",
     alignSelf: "center",
-    fontFamily: "Karla-Bold",
   },
   discardBtn: {
     flex: 1,
@@ -351,12 +343,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: "#3e524b",
     alignSelf: "center",
-    fontFamily: "Karla-Bold",
   },
   btntext: {
     fontSize: 22,
     color: "#3e524b",
-    fontFamily: "Karla-Bold",
     alignSelf: "center",
   },
   section: {

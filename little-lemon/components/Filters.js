@@ -22,7 +22,6 @@ const Filters = ({ onChange, selections, sections }) => {
           <View>
             <Text
               style={{
-                fontFamily: "Karla-ExtraBold",
                 color: selections[index] ? "#edefee" : "#495e57",
               }}
             >

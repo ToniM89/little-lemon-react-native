@@ -258,24 +258,20 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     color: "#495e57",
     backgroundColor: "#fff",
-    fontFamily: "Karla-ExtraBold",
   },
   name: {
     fontSize: 20,
     color: "#000000",
     paddingBottom: 5,
-    fontFamily: "Karla-Bold",
   },
   description: {
     color: "#495e57",
     paddingRight: 5,
-    fontFamily: "Karla-Medium",
   },
   price: {
     fontSize: 20,
     color: "#EE9972",
     paddingTop: 5,
-    fontFamily: "Karla-Medium",
   },
   itemImage: {
     width: 100,
@@ -307,16 +303,13 @@ const styles = StyleSheet.create({
   heroHeader: {
     color: "#f4ce14",
     fontSize: 54,
-    fontFamily: "MarkaziText-Medium",
   },
   heroHeader2: {
     color: "#fff",
     fontSize: 30,
-    fontFamily: "MarkaziText-Medium",
   },
   heroText: {
     color: "#fff",
-    fontFamily: "Karla-Medium",
     fontSize: 14,
   },
   heroBody: {
@@ -334,7 +327,6 @@ const styles = StyleSheet.create({
   delivery: {
     fontSize: 18,
     padding: 15,
-    fontFamily: "Karla-ExtraBold",
   },
 });
 

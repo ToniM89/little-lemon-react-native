@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 24,
-    fontFamily: "Karla-ExtraBold",
     color: "#495E57",
   },
   inputBox: {
@@ -189,7 +188,6 @@ const styles = StyleSheet.create({
     padding: 10,
     fontSize: 20,
     borderRadius: 9,
-    fontFamily: "Karla-Medium",
   },
   btn: {
     backgroundColor: "#f4ce14",
@@ -225,7 +223,6 @@ const styles = StyleSheet.create({
   btntext: {
     fontSize: 22,
     color: "#333",
-    fontFamily: "Karla-Bold",
     alignSelf: "center",
   },
   pageIndicator: {
