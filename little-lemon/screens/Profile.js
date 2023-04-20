@@ -67,15 +67,6 @@ const Profile = () => {
     }));
   };
 
-  const getIsFormValid = () => {
-    return (
-      !validateName(profile.firstName) &&
-      !validateName(profile.lastName) &&
-      profile.email &&
-      validateNumber(profile.phoneNumber)
-    );
-  };
-
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -246,11 +237,7 @@ const Profile = () => {
           <Pressable style={styles.discardBtn} onPress={() => setDiscard(true)}>
             <Text style={styles.discardBtnText}>Discard changes</Text>
           </Pressable>
-          <Pressable
-            style={[styles.saveBtn, getIsFormValid() ? "" : styles.btnDisabled]}
-            onPress={() => update(profile)}
-            disabled={!getIsFormValid()}
-          >
+          <Pressable style={styles.saveBtn} onPress={() => update(profile)}>
             <Text style={styles.saveBtnText}>Save changes</Text>
           </Pressable>
         </View>

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, createContext } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   Image,
@@ -9,19 +9,17 @@ import {
   TextInput,
   Pressable,
 } from "react-native";
-import PagerView from "react-native-pager-view";
 import Constants from "expo-constants";
 import { AuthContext } from "../context/AuthContext";
 
 const Onboarding = () => {
   const [firstName, onChangeFirstName] = useState("");
   const [lastName, onChangeLastName] = useState("");
+
   const [email, onChangeEmail] = useState("");
 
   const isEmailValid = validateEmail(email);
   const isFirstNameValid = validateName(firstName);
-  const isLastNameValid = validateName(lastName);
-  const viewPagerRef = useRef(PagerView);
 
   const { onboard } = useContext(AuthContext);
 
@@ -39,102 +37,41 @@ const Onboarding = () => {
         />
       </View>
       <Text style={styles.welcomeText}>Let us get to know you</Text>
-      <PagerView
-        style={styles.viewPager}
-        scrollEnabled={false}
-        initialPage={0}
-        ref={viewPagerRef}
-      >
-        <View style={styles.page} key="1">
-          <View style={styles.pageContainer}>
-            <Text style={styles.text}>First Name</Text>
-            <TextInput
-              style={styles.inputBox}
-              value={firstName}
-              onChangeText={onChangeFirstName}
-              placeholder={"First Name"}
-            />
-          </View>
-          <View style={styles.pageIndicator}>
-            <View style={[styles.pageDot, styles.pageDotActive]}></View>
-            <View style={styles.pageDot}></View>
-            <View style={styles.pageDot}></View>
-          </View>
+      <View style={styles.page}>
+        <View style={styles.pageContainer}>
+          <Text style={styles.text}>First Name</Text>
+          <TextInput
+            style={styles.inputBox}
+            value={firstName}
+            onChangeText={onChangeFirstName}
+            placeholder={"First Name"}
+          />
+          <Text style={styles.text}>Last Name</Text>
+          <TextInput
+            style={styles.inputBox}
+            value={lastName}
+            onChangeText={onChangeLastName}
+            placeholder={"Last Name"}
+          />
+          <Text style={styles.text}>Email</Text>
+          <TextInput
+            style={styles.inputBox}
+            value={email}
+            onChangeText={onChangeEmail}
+            placeholder={"Email"}
+            keyboardType="email-address"
+          />
+        </View>
+        <View style={styles.buttons}>
           <Pressable
-            style={[styles.btn, isFirstNameValid ? "" : styles.btnDisabled]}
-            onPress={() => viewPagerRef.current.setPage(1)}
-            disabled={!isFirstNameValid}
+            style={[styles.halfBtn, isEmailValid ? "" : styles.btnDisabled]}
+            onPress={() => onboard({ firstName, lastName, email })}
+            disabled={!isEmailValid || !isFirstNameValid}
           >
-            <Text style={styles.btntext}>Next</Text>
+            <Text style={styles.btntext}>Submit</Text>
           </Pressable>
         </View>
-        <View style={styles.page} key="2">
-          <View style={styles.pageContainer}>
-            <Text style={styles.text}>Last Name</Text>
-            <TextInput
-              style={styles.inputBox}
-              value={lastName}
-              onChangeText={onChangeLastName}
-              placeholder={"Last Name"}
-            />
-          </View>
-          <View style={styles.pageIndicator}>
-            <View style={styles.pageDot}></View>
-            <View style={[styles.pageDot, styles.pageDotActive]}></View>
-            <View style={styles.pageDot}></View>
-          </View>
-          <View style={styles.buttons}>
-            <Pressable
-              style={styles.halfBtn}
-              onPress={() => viewPagerRef.current.setPage(0)}
-            >
-              <Text style={styles.btntext}>Back</Text>
-            </Pressable>
-            <Pressable
-              style={[
-                styles.halfBtn,
-                isLastNameValid ? "" : styles.btnDisabled,
-              ]}
-              onPress={() => viewPagerRef.current.setPage(2)}
-              disabled={!isLastNameValid}
-            >
-              <Text style={styles.btntext}>Next</Text>
-            </Pressable>
-          </View>
-        </View>
-        <View style={styles.page} key="3">
-          <View style={styles.pageContainer}>
-            <Text style={styles.text}>Email</Text>
-            <TextInput
-              style={styles.inputBox}
-              value={email}
-              onChangeText={onChangeEmail}
-              placeholder={"Email"}
-              keyboardType="email-address"
-            />
-          </View>
-          <View style={styles.pageIndicator}>
-            <View style={styles.pageDot}></View>
-            <View style={styles.pageDot}></View>
-            <View style={[styles.pageDot, styles.pageDotActive]}></View>
-          </View>
-          <View style={styles.buttons}>
-            <Pressable
-              style={styles.halfBtn}
-              onPress={() => viewPagerRef.current.setPage(1)}
-            >
-              <Text style={styles.btntext}>Back</Text>
-            </Pressable>
-            <Pressable
-              style={[styles.halfBtn, isEmailValid ? "" : styles.btnDisabled]}
-              onPress={() => onboard({ firstName, lastName, email })}
-              disabled={!isEmailValid}
-            >
-              <Text style={styles.btntext}>Submit</Text>
-            </Pressable>
-          </View>
-        </View>
-      </PagerView>
+      </View>
     </KeyboardAvoidingView>
   );
 };
@@ -156,9 +93,7 @@ const styles = StyleSheet.create({
     width: 150,
     resizeMode: "contain",
   },
-  viewPager: {
-    flex: 1,
-  },
+
   page: {
     justifyContent: "center",
   },
@@ -166,6 +101,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: 60,
   },
   welcomeText: {
     fontSize: 40,
@@ -209,6 +145,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 18,
     marginBottom: 60,
+    marginTop: 100,
   },
   halfBtn: {
     flex: 1,
